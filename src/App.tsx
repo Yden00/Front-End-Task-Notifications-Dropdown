@@ -3,6 +3,7 @@ import { seedNotifications } from "./data";
 import { NotificationBell } from "./components/NotificationBell";
 import { NotificationsDropdown } from "./components/NotificationsDropdown";
 import { type Tab } from "./types";
+import styles from "./App.module.css";
 
 export default function App() {
   const [notifications, setNotifications] = useState(seedNotifications);
@@ -26,7 +27,6 @@ export default function App() {
       prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
     );
   }
-
   useEffect(() => {
     if (!isOpen) return;
 
@@ -48,9 +48,8 @@ export default function App() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
-
   return (
-    <div ref={menuRef}>
+    <div ref={menuRef} className={styles.widget}>
       <NotificationBell
         unreadCount={unreadCount}
         onClick={() => setIsOpen((prev) => !prev)}

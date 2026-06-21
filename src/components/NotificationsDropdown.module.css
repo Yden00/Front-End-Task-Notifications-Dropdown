@@ -1,0 +1,66 @@
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 48px;
+  width: 420px;
+  max-width: calc(100vw - 32px);
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  z-index: 100;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 16px;
+}
+
+.badge {
+  background: #ff3b5c;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.markAll {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #2979ff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.empty {
+  text-align: center;
+  color: #9999a8;
+  padding: 32px 16px;
+  font-size: 14px;
+}
