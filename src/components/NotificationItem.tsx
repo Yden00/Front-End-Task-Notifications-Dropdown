@@ -1,6 +1,7 @@
 import { type Notification } from "../types";
 import { renderNotification } from "../renderers";
 import { formatTimeAgo } from "../formatTime";
+import { Avatar } from "./Avatar";
 import styles from "./NotificationItem.module.css";
 
 interface NotificationItemProps {
@@ -18,6 +19,7 @@ export function NotificationItem({
 
   return (
     <li className={itemClass} onClick={() => onMarkAsRead(notification.id)}>
+      <Avatar name={notification.actor} />
       <div className={styles.content}>
         <div className={styles.text}>{renderNotification(notification)}</div>
         <div className={styles.time}>
