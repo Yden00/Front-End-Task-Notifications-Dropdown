@@ -1,5 +1,6 @@
 import { type Notification } from "../types";
 import { renderNotification } from "../renderers";
+import { formatTimeAgo } from "../formatTime";
 
 interface NotificationItemProps {
   notification: Notification;
@@ -12,7 +13,8 @@ export function NotificationItem({
 }: NotificationItemProps) {
   return (
     <li onClick={() => onMarkAsRead(notification.id)}>
-      {renderNotification(notification)}
+      <div>{renderNotification(notification)}</div>
+      <div>{formatTimeAgo(notification.createdAt)}</div>
     </li>
   );
 }
