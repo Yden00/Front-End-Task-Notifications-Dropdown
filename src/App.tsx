@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { seedNotifications } from "./data";
+import { NotificationBell } from "./components/NotificationBell";
 import { NotificationsDropdown } from "./components/NotificationsDropdown";
 import { type Tab } from "./types";
 
@@ -50,9 +51,10 @@ export default function App() {
 
   return (
     <div ref={menuRef}>
-      <button onClick={() => setIsOpen((prev) => !prev)}>
-        🔔 {unreadCount > 0 && <span>({unreadCount})</span>}
-      </button>
+      <NotificationBell
+        unreadCount={unreadCount}
+        onClick={() => setIsOpen((prev) => !prev)}
+      />
       {isOpen && (
         <NotificationsDropdown
           notifications={visibleNotifications}
