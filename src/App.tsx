@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { seedNotifications } from "./data";
-import { renderNotification } from "./renderers";
+import { NotificationsDropdown } from "./components/NotificationsDropdown";
 import { type Tab } from "./types";
 
 export default function App() {
@@ -54,31 +54,14 @@ export default function App() {
         🔔 {unreadCount > 0 && <span>({unreadCount})</span>}
       </button>
       {isOpen && (
-        <div>
-          <h1>Notifications ({unreadCount})</h1>
-          <div>
-            <button onClick={() => setActiveTab("all")}>All Notifications</button>
-            <button onClick={() => setActiveTab("unread")}>
-              Unread Notifications
-            </button>
-          </div>
-          <button onClick={markAllAsRead}>Mark all as read</button>
-          {visibleNotifications.length === 0 ? (
-            <p>
-              {activeTab === "unread"
-                ? "You're all caught up"
-                : "No notifications yet"}
-            </p>
-          ) : (
-            <ul>
-              {visibleNotifications.map((n) => (
-                <li key={n.id} onClick={() => markAsRead(n.id)}>
-                  {renderNotification(n)}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        <NotificationsDropdown
+          notifications={visibleNotifications}
+          unreadCount={unreadCount}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          onMarkAsRead={markAsRead}
+          onMarkAllAsRead={markAllAsRead}
+        />
       )}
     </div>
   );
