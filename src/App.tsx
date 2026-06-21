@@ -4,7 +4,7 @@ import { renderNotification } from "./renderers";
 import { type Tab } from "./types";
 
 export default function App() {
-  const [notifications] = useState(seedNotifications);
+  const [notifications, setNotifications] = useState(seedNotifications);
   const [activeTab, setActiveTab] = useState<Tab>("all");
 
   const visibleNotifications =
@@ -13,6 +13,16 @@ export default function App() {
       : notifications;
 
   const unreadCount = notifications.filter((n) => !n.read).length;
+
+  function markAllAsRead() {
+    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+  }
+
+  function markAsRead(id: string) {
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
+    );
+  }
 
   return (
     <div>
@@ -23,6 +33,7 @@ export default function App() {
           Unread Notifications
         </button>
       </div>
+      <button onClick={markAllAsRead}>Mark all as read</button>
       {visibleNotifications.length === 0 ? (
         <p>
           {activeTab === "unread"
@@ -32,7 +43,9 @@ export default function App() {
       ) : (
         <ul>
           {visibleNotifications.map((n) => (
-            <li key={n.id}>{renderNotification(n)}</li>
+            <li key={n.id} onClick={() => markAsRead(n.id)}>
+              {renderNotification(n)}
+            </li>
           ))}
         </ul>
       )}
